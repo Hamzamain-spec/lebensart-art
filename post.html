@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel — LebensArt</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#FAF7F2;--warm:#F0EAE0;--card:#FFFFFF;--border:#E8E0D5;--ink:#2C1F0E;--brown:#6B4C2A;--rust:#C4622D;--sage:#6B8C5F;--gold:#C9A84C;--muted:#9A8A7A;--light:#BDB0A4}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--ink)}
+.top-strip{background:var(--ink);padding:7px 0;text-align:center}
+.top-strip-text{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:2px}
+.top-strip-text span{color:var(--gold);font-weight:700}
+header{background:var(--card);border-bottom:1px solid var(--border);padding:20px 0;text-align:center}
+.logo{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;display:block}
+.logo span{color:var(--rust);font-style:italic}
+nav{background:var(--warm);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 32px;display:flex;justify-content:center}
+nav a{display:block;padding:12px 18px;color:var(--brown);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+nav a:hover{color:var(--rust)}
+/* POST HERO */
+.post-hero{background:var(--card);border-bottom:1px solid var(--border);padding:64px 32px;text-align:center;position:relative}
+.post-hero::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:3px;background:linear-gradient(to right,var(--rust),var(--gold))}
+.post-hero-inner{max-width:760px;margin:0 auto}
+.post-breadcrumb{font-size:11px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:6px}
+.post-breadcrumb a{color:var(--muted);text-decoration:none}
+.post-breadcrumb a:hover{color:var(--rust)}
+.post-cat{display:inline-block;background:var(--rust);color:#fff;font-size:9px;font-weight:800;letter-spacing:3px;padding:5px 16px;text-transform:uppercase;margin-bottom:20px}
+.post-title{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:20px}
+.post-deco{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px}
+.post-deco-line{width:40px;height:1px;background:var(--border)}
+.post-deco-icon{font-size:14px;color:var(--gold)}
+.post-meta{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.post-meta strong{color:var(--brown);font-weight:700}
+.layout{max-width:1100px;margin:44px auto;padding:0 32px;display:grid;grid-template-columns:1fr 280px;gap:32px}
+.main-col{background:var(--card);padding:48px;border:1px solid var(--border)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--rust);text-decoration:none;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:30px;padding-bottom:20px;border-bottom:1px solid var(--border);width:100%}
+.back-btn:hover{color:var(--brown)}
+.article-body{font-size:17px;line-height:2;color:#5A4A3A;font-weight:400}
+.article-body p{margin-bottom:28px}
+.article-body h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--ink);margin:52px 0 16px;text-align:center;position:relative;padding-bottom:14px}
+.article-body h2::after{content:'✦';display:block;font-size:14px;color:var(--gold);margin-top:8px}
+.article-body h3{font-size:20px;font-weight:700;color:var(--brown);margin:32px 0 10px}
+.article-body a{color:var(--rust);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(196,98,45,0.3)}
+.article-body a:hover{color:var(--brown);border-color:var(--brown)}
+.article-body ul,.article-body ol{padding-left:24px;margin-bottom:22px}
+.article-body li{margin-bottom:8px;line-height:1.8}
+blockquote{border-left:3px solid var(--gold);background:var(--warm);padding:22px 28px;margin:32px 0;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--brown);line-height:1.6}
+.sidebar{display:flex;flex-direction:column;gap:18px}
+.widget{background:var(--card);border:1px solid var(--border);overflow:hidden}
+.widget-header{background:var(--warm);padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.widget-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--ink)}
+.widget-body{padding:18px}
+.w-item{padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.w-item:last-child{border-bottom:none;padding-bottom:0}
+.w-item:first-child{padding-top:0}
+.w-cat{font-size:9px;font-weight:800;color:var(--rust);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.w-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;text-decoration:none;display:block}
+.w-title:hover{color:var(--rust)}
+.w-date{font-size:11px;color:var(--light);margin-top:3px}
+.not-found{text-align:center;padding:80px;color:var(--muted);grid-column:1/-1}
+.not-found h2{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--ink);margin-bottom:8px}
+footer{background:var(--ink);margin-top:60px;text-align:center;padding:28px;font-size:12px;color:rgba(255,255,255,0.35)}
+footer a{color:rgba(255,255,255,0.35);text-decoration:none;margin:0 10px}
+footer a:hover{color:var(--gold)}
+.fl{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:8px}
+.fl span{color:var(--gold);font-style:italic}
+</style>
+</head>
+<body>
+<div class="top-strip"><div class="top-strip-text">✦ <span>LebensArt</span> — Lifestyle · Reisen · Genuss · Inspiration ✦</div></div>
+<header><a href="index.html" class="logo">Lebens<span>Art</span></a></header>
+<nav><div class="nav-inner"><a href="index.html">← Start</a><a href="index.html">Lifestyle</a><a href="index.html">Reisen</a><a href="index.html">Genuss</a><a href="index.html">Kultur</a></div></nav>
+<div id="post-hero" class="post-hero" style="display:none">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb"><a href="index.html">Start</a> / <span id="post-cat-bc">Lifestyle</span></div>
+    <div class="post-cat" id="post-cat">Lifestyle</div>
+    <div class="post-title" id="post-title"></div>
+    <div class="post-deco"><div class="post-deco-line"></div><div class="post-deco-icon">✦</div><div class="post-deco-line"></div></div>
+    <div class="post-meta">
+      <span>✍ <strong id="post-author">Redaktion</strong></span>
+      <span>📅 <strong id="post-date"></strong></span>
+      <span>⏱ <strong id="post-read">5 Min.</strong></span>
+    </div>
+  </div>
+</div>
+<div class="layout">
+  <div class="main-col">
+    <a href="index.html" class="back-btn">← Alle Beiträge</a>
+    <div id="article-body" class="article-body"></div>
+    <div id="not-found" class="not-found" style="display:none"><h2>Beitrag nicht gefunden.</h2></div>
+  </div>
+  <aside class="sidebar">
+    <div class="widget"><div class="widget-header"><span>✦</span>&nbsp;<span class="widget-title">Weitere Beiträge</span></div><div class="widget-body"><div id="recent-posts"></div></div></div>
+    <div class="widget"><div class="widget-header"><span>📖</span>&nbsp;<span class="widget-title">Über uns</span></div><div class="widget-body"><p style="font-size:13px;line-height:1.75;color:var(--muted)">LebensArt — dein deutsches Lifestyle-Blog für Inspiration, Reisen, Genuss und die schönen Dinge des Alltags.</p></div></div>
+  </aside>
+</div>
+<footer><div class="fl">Lebens<span>Art</span></div><p>&copy; 2026 LebensArt &nbsp;|&nbsp;<a href="#">Impressum</a>&nbsp;|&nbsp;<a href="#">Datenschutz</a></p></footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+const SITE_NAME = 'lebensart';
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96'; // Same Gist for all sites!
+
+async function loadPost() {
+  try {
+    console.log('Fetching post from Gist ID:', GIST_ID);
+    console.log('Looking for post ID:', id);
+    
+    // Use raw URL
+    const rawUrl = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+    const response = await fetch(rawUrl);
+    
+    if (response.ok) {
+      const allPosts = await response.json();
+      console.log('All posts:', allPosts);
+      
+      // Filter by site name
+      const sitePosts = allPosts.filter(post => post.site === SITE_NAME);
+      console.log(`Found ${sitePosts.length} posts for site: ${SITE_NAME}`);
+      
+      const post = sitePosts.find(p => p.id == id);
+      console.log('Found post:', post);
+      
+      if (post) {
+        document.title = post.title + ' — LebensArt';
+        document.getElementById('post-title').textContent = post.title;
+        document.getElementById('post-cat').textContent = post.category || 'Lifestyle';
+        document.getElementById('post-cat-bc').textContent = post.category || 'Lifestyle';
+        document.getElementById('post-author').textContent = post.author || 'Redaktion';
+        document.getElementById('post-date').textContent = new Date(post.date).toLocaleDateString('de-DE', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        
+        const words = post.content.replace(/<[^>]+>/g, '').split(' ').length;
+        document.getElementById('post-read').textContent = Math.max(1, Math.round(words / 200)) + ' Min. Lesezeit';
+        
+        document.getElementById('article-body').innerHTML = post.content;
+        document.getElementById('post-hero').style.display = 'block';
+        
+        // Recent posts
+        const rp = document.getElementById('recent-posts');
+        rp.innerHTML = '';
+        sitePosts.slice().reverse().slice(0, 5).forEach(p => {
+          if (p.id == id) return;
+          rp.innerHTML += `<div class="w-item"><div class="w-cat">${p.category || 'Lifestyle'}</div><a class="w-title" href="post.html?id=${p.id}">${p.title}</a><div class="w-date">${new Date(p.date).toLocaleDateString('de-DE')}</div></div>`;
+        });
+      } else {
+        console.log('Post not found for ID:', id);
+        document.getElementById('not-found').style.display = 'block';
+      }
+    } else {
+      console.error('Failed to fetch from Gist:', response.status);
+      document.getElementById('not-found').style.display = 'block';
+    }
+  } catch (error) {
+    console.error('Error loading post:', error);
+    document.getElementById('not-found').style.display = 'block';
+  }
+}
+
+loadPost();
+</script>
+</body>
+</html>
