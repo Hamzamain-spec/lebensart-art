@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LebensArt — Dein deutsches Lifestyle-Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#FAF7F2;--warm:#F0EAE0;--card:#FFFFFF;--border:#E8E0D5;--ink:#2C1F0E;--brown:#6B4C2A;--rust:#C4622D;--sage:#6B8C5F;--gold:#C9A84C;--muted:#9A8A7A;--light:#BDB0A4}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--ink)}
+
+/* TOP STRIP */
+.top-strip{background:var(--ink);padding:7px 0;text-align:center}
+.top-strip-text{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:2px;font-weight:400}
+.top-strip-text span{color:var(--gold);font-weight:700}
+
+/* HEADER */
+header{background:var(--card);border-bottom:1px solid var(--border);padding:28px 0}
+.header-inner{max-width:1180px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.logo-pre{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:700;color:var(--ink);letter-spacing:-1px;line-height:1}
+.logo-name span{color:var(--rust);font-style:italic}
+.logo-tagline{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:1px}
+.header-divider{display:flex;align-items:center;gap:14px;width:100%;max-width:500px;margin:4px 0}
+.header-divider-line{flex:1;height:1px;background:var(--border)}
+.header-divider-icon{font-size:16px}
+
+/* NAV */
+nav{background:var(--warm);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 32px;display:flex;justify-content:center;gap:0}
+nav a{display:block;padding:14px 22px;color:var(--brown);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all 0.2s;position:relative}
+nav a::after{content:'';position:absolute;bottom:0;left:22px;right:22px;height:2px;background:var(--rust);transform:scaleX(0);transition:transform 0.2s}
+nav a:hover{color:var(--rust)}
+nav a:hover::after{transform:scaleX(1)}
+
+/* MASONRY-STYLE GRID */
+.main-wrap{max-width:1180px;margin:44px auto;padding:0 32px}
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+.section-head-line{flex:1;height:1px;background:var(--border)}
+.section-head-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--ink);white-space:nowrap;padding:0 8px}
+.section-head-ornament{font-size:14px;color:var(--gold)}
+
+/* HERO POST — full width */
+.hero-post{background:var(--card);border:1px solid var(--border);margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr;cursor:pointer;transition:box-shadow 0.3s;overflow:hidden}
+.hero-post:hover{box-shadow:0 12px 48px rgba(44,31,14,0.08)}
+.hero-img{min-height:400px;position:relative;overflow:hidden}
+.hero-img-bg{width:100%;height:100%;position:absolute;inset:0;transition:transform 0.6s}
+.hero-post:hover .hero-img-bg{transform:scale(1.04)}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,31,14,0.3),rgba(44,31,14,0.05))}
+.hero-img-cat{position:absolute;bottom:20px;left:20px;background:var(--rust);color:#fff;font-size:9px;font-weight:800;letter-spacing:3px;padding:5px 14px;text-transform:uppercase}
+.hero-body{padding:44px 40px;display:flex;flex-direction:column;justify-content:center}
+.hero-number{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:700;color:var(--border);line-height:1;margin-bottom:16px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:14px}
+.hero-excerpt{font-size:15px;line-height:1.8;color:var(--muted);font-weight:400;margin-bottom:22px}
+.hero-meta{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--border)}
+.hero-author{font-size:13px;font-weight:700;color:var(--brown)}
+.hero-dot{width:4px;height:4px;border-radius:50%;background:var(--border)}
+.hero-date{font-size:12px;color:var(--muted)}
+.hero-readmore{margin-left:auto;font-size:11px;font-weight:800;color:var(--rust);letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+.hero-readmore:hover{color:var(--ink)}
+
+/* 3-COLUMN GRID */
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:36px}
+.post-card{background:var(--card);border:1px solid var(--border);cursor:pointer;transition:all 0.3s;overflow:hidden}
+.post-card:hover{box-shadow:0 8px 32px rgba(44,31,14,0.1);transform:translateY(-3px)}
+.post-card-img{height:200px;position:relative;overflow:hidden}
+.post-card-img-bg{width:100%;height:100%;position:absolute;inset:0;transition:transform 0.5s}
+.post-card:hover .post-card-img-bg{transform:scale(1.06)}
+.post-card-cat{position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.9);color:var(--rust);font-size:9px;font-weight:800;letter-spacing:2px;padding:4px 10px;text-transform:uppercase}
+.post-card-body{padding:22px}
+.post-card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:10px}
+.post-card-excerpt{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.post-card-author{font-size:12px;font-weight:700;color:var(--brown)}
+.post-card-date{font-size:11px;color:var(--light)}
+.post-card-link{font-size:11px;font-weight:800;color:var(--rust);letter-spacing:1.5px;text-transform:uppercase;text-decoration:none}
+
+/* SIDEBAR LAYOUT */
+.two-col{display:grid;grid-template-columns:1fr 300px;gap:32px}
+.widget{background:var(--card);border:1px solid var(--border);margin-bottom:22px;overflow:hidden}
+.widget-header{background:var(--warm);padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.widget-icon{font-size:16px}
+.widget-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--ink)}
+.widget-body{padding:20px}
+.w-item{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.w-item:last-child{border-bottom:none;padding-bottom:0}
+.w-item:first-child{padding-top:0}
+.w-thumb{width:60px;height:60px;flex-shrink:0;border-radius:4px}
+.w-info-cat{font-size:9px;font-weight:800;letter-spacing:2px;color:var(--rust);text-transform:uppercase;margin-bottom:3px}
+.w-info-title{font-size:13px;font-weight:700;color:var(--ink);line-height:1.35}
+.w-info-date{font-size:11px;color:var(--muted);margin-top:3px}
+.category-list{list-style:none}
+.category-list li{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.category-list li:last-child{border-bottom:none}
+.category-list li a{font-size:13px;font-weight:600;color:var(--brown);text-decoration:none;transition:color 0.2s}
+.category-list li a:hover{color:var(--rust)}
+.category-list li span{font-size:11px;color:var(--light);font-weight:700}
+.about-box{text-align:center}
+.about-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--rust),var(--gold));margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:32px;color:#fff;font-weight:700}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.about-bio{font-size:13px;line-height:1.7;color:var(--muted)}
+
+.empty-state{text-align:center;padding:80px 20px;background:var(--card);border:1px solid var(--border)}
+.empty-state h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.empty-state p{font-size:14px;color:var(--muted)}
+
+/* GRADIENTs for thumbnails */
+.bg-rust{background:linear-gradient(135deg,#C4622D,#E8A070)}
+.bg-sage{background:linear-gradient(135deg,#6B8C5F,#9DC48F)}
+.bg-gold{background:linear-gradient(135deg,#C9A84C,#E8D080)}
+.bg-brown{background:linear-gradient(135deg,#6B4C2A,#A07C5A)}
+.bg-teal{background:linear-gradient(135deg,#3A8A7A,#70C0B0)}
+.bg-wine{background:linear-gradient(135deg,#7A2040,#B05070)}
+
+footer{background:var(--ink);margin-top:60px}
+.footer-inner{max-width:1180px;margin:0 auto;padding:48px 32px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:#fff;margin-bottom:10px}
+.footer-logo span{color:var(--gold);font-style:italic}
+.footer-inner>div>p{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.4);font-weight:300}
+.footer-col h4{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.footer-col a{display:block;color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;margin-bottom:8px}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);max-width:1180px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-bottom a{color:rgba(255,255,255,0.3);text-decoration:none;margin-left:14px}
+.footer-bottom a:hover{color:var(--gold)}
+.admin-link{position:fixed;bottom:20px;right:20px;background:var(--rust);color:#fff;padding:10px 20px;font-size:11px;text-decoration:none;opacity:0.4;transition:opacity 0.2s;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.admin-link:hover{opacity:1}
+</style>
+</head>
+<body>
+<div class="top-strip"><div class="top-strip-text">✦ Herzlich willkommen bei <span>LebensArt</span> — Dein Blog für Stil, Genuss & Inspiration ✦</div></div>
+<header>
+  <div class="header-inner">
+    <div class="logo-pre">Est. 2024 · Deutschland</div>
+    <div class="logo-name">Lebens<span>Art</span></div>
+    <div class="header-divider"><div class="header-divider-line"></div><div class="header-divider-icon">✦</div><div class="header-divider-line"></div></div>
+    <div class="logo-tagline">Lifestyle · Reisen · Genuss · Kultur · Inspiration</div>
+  </div>
+</header>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">Start</a>
+    <a href="index.html">Lifestyle</a>
+    <a href="index.html">Reisen</a>
+    <a href="index.html">Genuss</a>
+    <a href="index.html">Kultur</a>
+    <a href="index.html">Gesundheit</a>
+    <a href="index.html">Wohnen</a>
+    <a href="index.html">Ratgeber</a>
+  </div>
+</nav>
+
+<div class="main-wrap">
+  <div class="section-head">
+    <div class="section-head-line"></div>
+    <div class="section-head-ornament">✦</div>
+    <div class="section-head-title">Highlights</div>
+    <div class="section-head-ornament">✦</div>
+    <div class="section-head-line"></div>
+  </div>
+  <div id="hero-wrap">
+    <div class="empty-state"><h3>Artikel werden geladen...</h3><p>Bitte warten Sie einen Moment.</p></div>
+  </div>
+  <div class="section-head" style="margin-top:12px">
+    <div class="section-head-line"></div>
+    <div class="section-head-ornament">✦</div>
+    <div class="section-head-title">Aktuelle Beiträge</div>
+    <div class="section-head-ornament">✦</div>
+    <div class="section-head-line"></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <div id="grid-wrap" class="posts-grid"></div>
+    </div>
+    <aside>
+      <div class="widget">
+        <div class="widget-header"><span class="widget-icon">✦</span><span class="widget-title">Über LebensArt</span></div>
+        <div class="widget-body">
+          <div class="about-box">
+            <div class="about-avatar">L</div>
+            <div class="about-name">Die LebensArt Redaktion</div>
+            <div class="about-bio">Wir lieben das Gute im Leben — Reisen, Genuss, Stil und Inspiration aus Deutschland und der Welt. Täglich neue Beiträge für ein schönes Leben.</div>
+          </div>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-header"><span class="widget-icon">📌</span><span class="widget-title">Beliebt</span></div>
+        <div class="widget-body"><div id="sidebar-popular"></div></div>
+      </div>
+      <div class="widget">
+        <div class="widget-header"><span class="widget-icon">📂</span><span class="widget-title">Kategorien</span></div>
+        <div class="widget-body">
+          <ul class="category-list">
+            <li><a href="#">Lifestyle</a><span>●</span></li>
+            <li><a href="#">Reisen</a><span>●</span></li>
+            <li><a href="#">Genuss</a><span>●</span></li>
+            <li><a href="#">Kultur</a><span>●</span></li>
+            <li><a href="#">Gesundheit</a><span>●</span></li>
+            <li><a href="#">Wohnen</a><span>●</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Lebens<span>Art</span></div>
+      <p>LebensArt ist dein deutsches Lifestyle-Magazin für Inspiration, Reisen, Genuss und die schönen Seiten des Lebens.</p>
+    </div>
+    <div class="footer-col"><h4>Themen</h4><a href="#">Lifestyle</a><a href="#">Reisen</a><a href="#">Genuss</a><a href="#">Wohnen</a></div>
+    <div class="footer-col"><h4>Info</h4><a href="#">Über uns</a><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">Kontakt</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 LebensArt — Alle Rechte vorbehalten</span><div><a href="#">Impressum</a><a href="#">Datenschutz</a></div></div>
+</footer>
+<a href="admin.html" class="admin-link">⚙ Admin</a>
+
+<script>
+const bgs = ['bg-rust','bg-sage','bg-gold','bg-brown','bg-teal','bg-wine'];
+const SITE_NAME = 'lebensart';
+const GIST_ID = '42ea11087f40fdba423f8eb0f575ac96'; // Same Gist for all sites!
+
+async function loadPosts() {
+  const hw = document.getElementById('hero-wrap');
+  const gw = document.getElementById('grid-wrap');
+  const sp = document.getElementById('sidebar-popular');
+  
+  try {
+    console.log('Fetching from Gist ID:', GIST_ID);
+    
+    const rawUrl = `https://gist.githubusercontent.com/Hamzamain-spec/${GIST_ID}/raw/posts.json`;
+    const response = await fetch(rawUrl);
+    
+    if (response.ok) {
+      const allPosts = await response.json();
+      console.log('All posts from Gist:', allPosts);
+      
+      // Filter by site name
+      const sitePosts = allPosts.filter(post => post.site === SITE_NAME);
+      console.log(`Found ${sitePosts.length} posts for site: ${SITE_NAME}`);
+      
+      // Sort by date (newest first)
+      const sortedPosts = [...sitePosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      displayPosts(sortedPosts, hw, gw, sp);
+    } else {
+      console.error('Failed to fetch from Gist:', response.status);
+      hw.innerHTML = '<div class="empty-state"><h3>Fehler beim Laden</h3><p>Bitte später erneut versuchen.</p></div>';
+    }
+  } catch (error) {
+    console.error('Error loading posts:', error);
+    hw.innerHTML = '<div class="empty-state"><h3>Fehler</h3><p>' + error.message + '</p></div>';
+  }
+}
+
+function displayPosts(posts, hw, gw, sp) {
+  if (!posts || posts.length === 0) {
+    hw.innerHTML = '<div class="empty-state"><h3>Noch keine Beiträge</h3><p>Inhalte erscheinen bald.</p></div>';
+    gw.innerHTML = '';
+    sp.innerHTML = '';
+    return;
+  }
+  
+  // Hero (first post)
+  const p = posts[0];
+  const fd = new Date(p.date).toLocaleDateString('de-DE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
+  
+  hw.innerHTML = `
+    <div class="hero-post" onclick="location.href='post.html?id=${p.id}'">
+      <div class="hero-img">
+        <div class="hero-img-bg ${bgs[0]}"></div>
+        <div class="hero-img-overlay"></div>
+        <div class="hero-img-cat">${p.category || 'Lifestyle'}</div>
+      </div>
+      <div class="hero-body">
+        <div class="hero-number">01</div>
+        <div class="hero-title">${p.title}</div>
+        <div class="hero-excerpt">${exc}</div>
+        <div class="hero-meta">
+          <span class="hero-author">${p.author || 'Redaktion'}</span>
+          <span class="hero-dot"></span>
+          <span class="hero-date">${fd}</span>
+          <a class="hero-readmore" href="post.html?id=${p.id}">Lesen →</a>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Grid (next 6 posts)
+  gw.innerHTML = '';
+  posts.slice(1, 7).forEach((p, i) => {
+    const date = new Date(p.date).toLocaleDateString('de-DE');
+    const exc = p.content.replace(/<[^>]+>/g, '').substring(0, 100) + '...';
+    
+    const card = document.createElement('div');
+    card.className = 'post-card';
+    card.onclick = () => location.href = `post.html?id=${p.id}`;
+    
+    card.innerHTML = `
+      <div class="post-card-img">
+        <div class="post-card-img-bg ${bgs[(i + 1) % bgs.length]}"></div>
+        <span class="post-card-cat">${p.category || 'Lifestyle'}</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-title">${p.title}</div>
+        <div class="post-card-excerpt">${exc}</div>
+        <div class="post-card-footer">
+          <span class="post-card-author">${p.author || 'Redaktion'}</span>
+          <span class="post-card-date">${date}</span>
+          <a class="post-card-link" href="post.html?id=${p.id}">→</a>
+        </div>
+      </div>
+    `;
+    
+    gw.appendChild(card);
+  });
+  
+  // Sidebar popular (first 4 posts)
+  sp.innerHTML = '';
+  posts.slice(0, 4).forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'w-item';
+    item.onclick = () => location.href = `post.html?id=${p.id}`;
+    
+    item.innerHTML = `
+      <div class="w-thumb ${bgs[i % bgs.length]}"></div>
+      <div>
+        <div class="w-info-cat">${p.category || 'Lifestyle'}</div>
+        <div class="w-info-title">${p.title}</div>
+        <div class="w-info-date">${new Date(p.date).toLocaleDateString('de-DE')}</div>
+      </div>
+    `;
+    
+    sp.appendChild(item);
+  });
+  
+  console.log(`Displayed ${posts.length} posts`);
+}
+
+// Load posts when page loads
+loadPosts();
+
+// Auto-refresh every 30 seconds
+setInterval(loadPosts, 30000);
+</script>
+</body>
+</html>
